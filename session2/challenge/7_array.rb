@@ -10,9 +10,9 @@
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
 
 def alternate_words(s)
-
+  result = []
   #remove all non-apostrophe characters
-  s.gsub!(/[!@$#%^&*()-=_+[]:;,./<>?\|]/)
+  s.gsub!(/"!@$#%^&*()-=_+[]:;,./<>?\|"/)
   #separate into words, returns an array
   arr = s.split(" ")
   #loop through letters in word
@@ -24,5 +24,7 @@ def alternate_words(s)
     end
   end
 
+  result = arr.select.with_index { |w| index.even? }
+  return result
 
 end
