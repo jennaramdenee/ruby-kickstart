@@ -73,42 +73,46 @@ class User
   end
 
   def add_blog(date, text)
-    date = Date.parse
-    blog_count = blog.size
-    blogs << "blog" + blog_count.to_s
+    blog = Blog.new(date, self, text)
+    @blogs << blog
+    return blog
   end
 
   def blogs
-    return blogs.sort.reverse
+    sorted_blogs = @blogs.sort_by { |blog| blog.date }
+    return sorted_blogs.reverse!
   end
 end
 
+class Blog
+  attr_accessor :date, :user, :text
+  def initialize(date, user, text)
+    @date = date
+    @user = user
+    @text = text
+  end
 
-  class Blog
-    attr_accessor 'text', 'date', 'user'
-    def initialize(date, user, text)
-      @date = date
-      @user = user
-      @text = text
+  def summary
+    new_text = text.split(" ")
+    print_text = ""
+    if new_text.size > 10
+      return new_text[0..9].join(" ")
+    else
+      return text
     end
+  end
 
-    def summary
-      if text.size > 10
-        text.each do |word|
-          while i < 11
-            print word
-            i += 1
-          end
-        end
-      else
-        return text
-      end
-    end
+  def get_summary
+    return text
+  end
 
-    def ==(other)
-      return self.date = other.date
-      return self.user = other.user
-      return self.text = other.text
-    end
+  def entry
+    return "#{user.username} #{date}\n#{text}"
+  end
+
+
+  def == (other)
+    return self.date == other.date && self.user.username == other.user.username && self.text == other.text
+  end
 
 end
