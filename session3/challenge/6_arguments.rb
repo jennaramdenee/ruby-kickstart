@@ -17,3 +17,35 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(*args)
+  arr = []
+  args.each do |i|
+    arr << i
+  end
+
+  arr = arr.map { |x| x == nil || x == false ? false : true }
+
+  result = []
+
+  c = arr.size
+
+  if arr[0] == true
+    arr[1..c].each_slice(2) do |a, b|
+      if a == b
+        result << false
+      else
+        result << true
+      end
+    end
+
+  else
+    arr[1..c].each_slice(2) do |a, b|
+      if a == b
+        result << true
+      else
+        result << false
+      end
+    end
+  end
+  return result
+end
