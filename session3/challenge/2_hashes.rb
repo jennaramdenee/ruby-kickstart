@@ -8,3 +8,21 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+def staircase(n)
+  result = Hash.new(0)
+
+  (1..n).each.with_index do |x, index|
+    if x.odd? == true
+      evens = []
+      (x).downto(2) do |y|
+        if y.even? == true
+          evens << y
+          evens.sort!
+        end
+      end
+      result[x] = evens
+    end
+  end
+
+  return result
+end
