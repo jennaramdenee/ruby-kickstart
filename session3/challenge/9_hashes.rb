@@ -29,4 +29,42 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  #form one array of all elements
+  ref_arr = a + b
+  #find unique array to refer back to
+  ref_arr = ref_arr.uniq
+
+  if ref_arr == []
+    return [{}, []]
+  end
+
+  result = {}
+  output = []
+  in_both = []
+  total = []
+  #
+  ref_arr.each do |x|
+    if a.include?(x) == true
+      output << true
+    else
+      output << nil
+    end
+
+    if b.include?(x) == true
+      output << true
+    else
+      output << nil
+    end
+    result[x] = output
+    output = []
+
+    if a.include?(x) == true && b.include?(x) == true
+      in_both << x
+    end
+  end
+
+  total << result << in_both
+
+  return total
+
 end
