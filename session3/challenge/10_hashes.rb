@@ -28,6 +28,37 @@
 #
 # create it from scratch :)
 
+# path = 'usr' => ['bin', 'batch'], 'plt' => 'bin'
+# ['/usr/bin', '/plt/bin']
 
-def pathify
+def pathify(paths, prefix = "")
+
+  result = []
+
+  if paths.is_a?(Hash)
+    paths.each do |key, value|
+      prefix2 = "#{prefix}/#{key}"
+      #puts prefix
+      result = result + pathify(value, prefix2)
+    end
+  elsif paths.is_a?(Array)
+    result = append_to_prefix(prefix, paths)
+  end
+  return result
+
 end
+
+def append_to_prefix(prefix, filenames)
+  final_output = []
+  filenames.each do |filename|
+    final_output << "#{prefix}/#{filename}"
+  end
+  return final_output
+end
+
+#puts pathify 'usr' => ['bin', 'batch'], 'plt' => 'bin' # ["/usr/bin", "/usr/batch", "plt/bin"]
+
+#puts append_to_prefix("/usr/bin", ["jenna", "calum"])
+
+#puts pathify 'usr' => { 'bin' => ["Jenna", "Calum"]}, 'another' => ['test', 'batch']
+puts pathify 'bin' => ['sh']
