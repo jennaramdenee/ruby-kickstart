@@ -17,12 +17,9 @@ def got_three?(arr)
       store = x
       counter = 0
     end
-
     if counter == 2
       return true
     end
   end
-
   return false
-
 end

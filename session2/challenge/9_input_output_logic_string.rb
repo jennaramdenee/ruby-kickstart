@@ -34,8 +34,6 @@ def deaf_grandma
         puts "HUH?! SPEAK UP, SONNY!"
       end
   end
-
-
 end
 
 

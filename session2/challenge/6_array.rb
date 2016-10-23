@@ -29,5 +29,4 @@ def prime_chars?(arr)
   else
     return true
   end
-
 end

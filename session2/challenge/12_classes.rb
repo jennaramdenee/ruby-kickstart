@@ -20,6 +20,7 @@
 # f.to_s               # => "50/100"
 # f.to_f               # => 0.5
 
+
 class Fraction
   attr_accessor :numerator, :denominator
 

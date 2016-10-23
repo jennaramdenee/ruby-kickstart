@@ -16,6 +16,7 @@ def get_squares(arr)
       result << num
     end
   end
+  
   result.sort!
   return result
 end

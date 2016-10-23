@@ -25,9 +25,7 @@ def hi_hi_goodbye
     break if line == "bye"
     line.to_i.times { print "hi "}
   end
-
   puts "goodbye"
-
 end
 
 

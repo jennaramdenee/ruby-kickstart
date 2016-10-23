@@ -22,7 +22,5 @@ def mod_three(arr)
       result << x%3
     end
   end
-
   return result
-
 end

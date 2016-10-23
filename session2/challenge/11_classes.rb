@@ -82,8 +82,6 @@ class BeerSong
     end
   end
 
-
-
   def print_song
 
     if @num == 0

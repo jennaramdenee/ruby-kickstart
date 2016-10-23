@@ -26,5 +26,4 @@ class Person
   def birthday
     @age = @age + 1
   end
-
 end
