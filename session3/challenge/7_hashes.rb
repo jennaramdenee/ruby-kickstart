@@ -31,11 +31,20 @@ class HTMLTag
     :monospace  => '"Courier New", "Lucida Console"'
   }
 
-  attr_accessor :name, :innerHTML, :options
+  COLORS = {
+    :red    => "#FF0000",
+    :green  => "#00FF00",
+    :blue   => "#0000FF"
+  }
+
+  attr_accessor :name, :innerHTML, :options, :font, :color, :multiline
 
   # options: :multiline should be true or false
   def initialize(name, innerHTML, options)
     @name, @innerHTML, @options = name, innerHTML, options
+    self.font = options[:font]
+    self.color = options[:color]
+    self.multiline = options[:multiline]
   end
 
   def font
@@ -43,9 +52,14 @@ class HTMLTag
     FONTS[font]
   end
 
+  def color
+    color = options[:color]
+    COLORS[color]
+  end
+
   def style
-    return nil unless options[:font]
-    "style='font-family:#{font}'"
+    return nil unless options[:font] || options[:color]
+    "style='color:#{color};font-family:#{font}'"
   end
 
   def to_s
