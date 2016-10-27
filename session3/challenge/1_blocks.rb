@@ -4,5 +4,5 @@
 # reverse_map(1, 2, 3) { |i| i * 2 }      # => [6, 4, 2]
 
 def reverse_map(*arg, &block)
-  arg.reverse.map(block.call)
+  arg.reverse.map(&block)
 end
