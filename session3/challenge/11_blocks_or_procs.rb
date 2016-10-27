@@ -29,6 +29,21 @@
 #   end
 # end
 
+# def reverse_map(*arg, &block)
+#   arg.reverse.map(&block)
+# end
 
-def array_init
+def array_init (size = 5, &block)
+  # If a block is not submitted, initialize the Array to 100 times the array's index, as a String
+
+  arr = Array.new(size, 1)
+  arr = arr.each_with_index.map { |x, i| x * i }
+
+  if block_given? == true
+    result = arr.map(&block)
+  else
+    result = arr.each_with_index.map { |x| (x * 100).to_s}
+  end
+
+  return result
 end
