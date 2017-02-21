@@ -36,7 +36,23 @@ class Stack
     @head &&= @head.next_node
     to_return
   end
+
+  def inspect
+    output = "()"
+    if @head != nil
+      output = "("
+      output << @head.data.inspect << ")"
+      loop do
+        break if @head.next_node == nil
+        @head = @head.next_node
+        output << @head.data.inspect << ")"
+      end
+    end
+    output
+  end
+
 end
+
 stack = Stack.new
 stack.push 1
 stack.push 2
@@ -57,6 +73,6 @@ stack.push 3
 stack # =>  (3)2)1)
 
 
-class Stack
-  # **define the inspect method here**
-end
+# class Stack
+#
+# end
