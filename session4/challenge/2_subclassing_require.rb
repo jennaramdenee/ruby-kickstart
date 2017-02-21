@@ -17,3 +17,19 @@
 # stack.push 1
 # stack.push 2
 # stack # => [1, 2]
+
+require File.expand_path("../1_stack_classes_inspect", __FILE__)
+
+class StackInDisguise < Stack
+
+  def inspect
+    output = []
+    while @head
+      output.push(@head.data)
+      break if @head.next_node == nil
+      @head = @head.next_node
+    end
+    output.reverse.to_s
+  end
+
+end
